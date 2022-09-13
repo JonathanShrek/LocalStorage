@@ -83,6 +83,7 @@ namespace Blazored.LocalStorage.Tests.LocalStorageServiceTests
             var dict1Data = new FillComplexObject().FillDict1();
             var dict2Data = new FillComplexObject().FillDict2();
             var dict3Data = new FillComplexObject().FillDict2();
+            var dict4Data = new FillComplexObject().FillDict2();
             var intList = new List<int>();
             decimal? decimal1 = null;
             decimal? decimal2 = null;
@@ -97,6 +98,7 @@ namespace Blazored.LocalStorage.Tests.LocalStorageServiceTests
             dict1Data,
             dict2Data,
             dict3Data,
+            dict4Data,
             intList,
             decimal1,
             decimal2,
@@ -114,6 +116,7 @@ namespace Blazored.LocalStorage.Tests.LocalStorageServiceTests
             var dict1CountEqual = objectToSave.Dict1.Count == result.Dict1.Count;
             var dict2CountEqual = objectToSave.Dict2.Count == result.Dict2.Count;
             var dict3CountEqual = objectToSave.Dict3.Count == result.Dict3.Count;
+            var dict4CountEqual = objectToSave.Dict4.Count == result.Dict4.Count;
 
             var dict1KeyEqual = false;
             foreach (var k1 in objectToSave.Dict1)
@@ -147,6 +150,18 @@ namespace Blazored.LocalStorage.Tests.LocalStorageServiceTests
                     if (k1.Key == k2.Key)
                     {
                         dict3KeyEqual = true;
+                    }
+                }
+            }
+
+            var dict4KeyEqual = false;
+            foreach (var k1 in objectToSave.Dict4)
+            {
+                foreach (var k2 in result.Dict4)
+                {
+                    if (k1.Key == k2.Key)
+                    {
+                        dict4KeyEqual = true;
                     }
                 }
             }
@@ -218,14 +233,40 @@ namespace Blazored.LocalStorage.Tests.LocalStorageServiceTests
                 }
             }
 
+            var dict4ValuesEqual = true;
+            foreach (var v1 in objectToSave.Dict4)
+            {
+                foreach (var v2 in result.Dict4)
+                {
+                    foreach (var values1 in v1.Value)
+                    {
+                        foreach (var values2 in v2.Value)
+                        {
+                            foreach (var item1 in values1)
+                            {
+                                foreach (var item2 in values2)
+                                {
+                                    if (item1 != item2)
+                                    {
+                                        dict4ValuesEqual = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             var areDicts1Equal = dict1CountEqual && dict1KeyEqual && dict1ValuesEqual;
             var areDicts2Equal = dict2CountEqual && dict2KeyEqual && dict2ValuesEqual;
             var areDicts3Equal = dict3CountEqual && dict3KeyEqual && dict3ValuesEqual;
+            var areDicts4Equal = dict4CountEqual && dict4KeyEqual && dict4ValuesEqual;
 
             // Assert
             Assert.True(areDicts1Equal);
             Assert.True(areDicts2Equal);
             Assert.True(areDicts3Equal);
+            Assert.True(areDicts4Equal);
 
             Assert.Equal(objectToSave.IntList, result.IntList);
             Assert.Equal(objectToSave.Decimal1, result.Decimal1);

@@ -11,7 +11,7 @@ namespace Blazored.LocalStorage.Tests.TestAssets
         public Dictionary<string, List<Dict1Object>> Dict1 { get; set; } = new LocalStorageServiceTests.FillComplexObject().FillDict1();
         public Dictionary<string, List<List<bool>>> Dict2 { get; set; } = new LocalStorageServiceTests.FillComplexObject().FillDict2();
         public Dictionary<string, List<List<bool>>> Dict3 { get; set; } = new LocalStorageServiceTests.FillComplexObject().FillDict2();
-        //public Dictionary<string, List<List<bool>>> Dict3 { get; set; } = new();
+        public Dictionary<string, List<List<bool>>> Dict4 { get; set; } = new LocalStorageServiceTests.FillComplexObject().FillDict2();
         public List<int> IntList { get; set; } = new();
         public decimal? Decimal1 { get; set; }
         public decimal? Decimal2 { get; set; }
@@ -26,6 +26,7 @@ namespace Blazored.LocalStorage.Tests.TestAssets
             Dictionary<string, List<Dict1Object>> dict1,
             Dictionary<string, List<List<bool>>> dict2,
             Dictionary<string, List<List<bool>>> dict3,
+            Dictionary<string, List<List<bool>>> dict4,
             List<int> intList,
             decimal? decimal1,
             decimal? decimal2,
@@ -39,6 +40,7 @@ namespace Blazored.LocalStorage.Tests.TestAssets
             Dict1 = dict1;
             Dict2 = dict2;
             Dict3 = dict3;
+            Dict3 = dict4;
             IntList = intList;
             Decimal1 = decimal1;
             Decimal2 = decimal2;
